@@ -3,7 +3,6 @@ name = "kaartdijin-boodja"
 version = "0.1.0"
 description = "DBCA CDDP Catalogue and Publishing Django Web Application"
 authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
