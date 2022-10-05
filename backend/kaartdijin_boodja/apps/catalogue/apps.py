@@ -8,4 +8,4 @@ from django import apps
 class CatalogueConfig(apps.AppConfig):
     """Catalogue Application Configuration."""
     default_auto_field = "django.db.models.BigAutoField"
-    name = "catalogue"
+    name = "kaartdijin_boodja.apps.catalogue"

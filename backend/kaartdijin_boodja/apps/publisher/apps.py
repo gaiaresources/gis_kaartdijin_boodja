@@ -8,4 +8,4 @@ from django import apps
 class PublisherConfig(apps.AppConfig):
     """Publisher Application Configuration."""
     default_auto_field = "django.db.models.BigAutoField"
-    name = "publisher"
+    name = "kaartdijin_boodja.apps.publisher"

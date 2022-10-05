@@ -22,6 +22,10 @@ from django import urls
 from django.contrib import admin
 
 
+# Autodiscover admin modules
+admin.autodiscover()
+
+
 # Django URL Patterns
 urlpatterns = [
     urls.path("admin/", admin.site.urls),

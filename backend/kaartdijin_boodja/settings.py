@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "kaartdijin_boodja.apps.catalogue",
+    "kaartdijin_boodja.apps.publisher",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
