@@ -78,11 +78,14 @@ For more information on the project structure, see the following links:
 * [Django REST Framework Quickstart](https://www.django-rest-framework.org/tutorial/quickstart/)
 
 ## Frontend
-The frontend of Kaartdijin Boodja is a ...
+The frontend of Kaartdijin Boodja is a [TypeScript](https://www.typescriptlang.org/) / [Node.js](https://nodejs.org/en/)
+/ [Vue.js](https://vuejs.org/) project using [Vite](https://vitejs.dev/) and [Pinia](https://pinia.vuejs.org/). The
+frontend uses [npm](https://www.npmjs.com/) to manage its dependencies, and is linted & unit-tested using `eslint` and
+`vitest`.
 
 ### Requirements
-* NodeJS ...
-* NPM ...
+* [Node.js 18](https://nodejs.org/en/blog/release/v18.0.0/)
+* [npm](https://www.npmjs.com/)
 
 ### Development
 #### Installation
@@ -111,7 +114,8 @@ $ npm run dev
 ```
 
 ### Configuration
-The frontend requires the following...
+The frontend requires the following environment variables to be set:
+...
 
 ### Structure
 The frontend is broadly split into 3 layers.
