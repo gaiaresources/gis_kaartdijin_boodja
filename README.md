@@ -13,9 +13,9 @@ publishing them for the Department of Biodiversity, Conservation and Attractions
 2. [Frontend](#frontend)
     1. [Requirements](#requirements-1)
     2. [Development](#development-1)
-        1. [Installation][#installation-1]
-        2. [Building][#building]
-        2. [Development Environment][#development-environment]
+        1. [Installation](#installation-1)
+        2. [Building](#building)
+        2. [Development Environment](#development-environment)
     3. [Configuration](#configuration-1)
     4. [Structure](#structure-1)
 
