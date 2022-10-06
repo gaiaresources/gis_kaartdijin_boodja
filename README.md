@@ -6,8 +6,8 @@ publishing them for the Department of Biodiversity, Conservation and Attractions
 1. [Backend](#backend)
     1. [Requirements](#requirements)
     2. [Development](#development)
-        1. [Installation][#installation]
-        2. [Usage][#usage]
+        1. [Installation](#installation)
+        2. [Usage](#usage)
     3. [Configuration](#configuration)
     4. [Structure](#structure)
 2. [Frontend](#frontend)
