@@ -46,7 +46,7 @@ yaml = ["PyYAML"]
 name = "certifi"
 version = "2022.9.24"
 description = "Python package for providing Mozilla's CA Bundle."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -54,7 +54,7 @@ python-versions = ">=3.6"
 name = "charset-normalizer"
 version = "2.1.1"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.0"
 
@@ -107,6 +107,25 @@ tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.1
 
 [package.extras]
 toml = ["tomli"]
+
+[[package]]
+name = "dbca-utils"
+version = "1.1.6"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+develop = false
+
+[package.dependencies]
+Django = ">=2.1"
+requests = "*"
+
+[package.source]
+type = "git"
+url = "https://github.com/dbca-wa/dbca-utils.git"
+reference = "HEAD"
+resolved_reference = "23812c7e2a6ce7a9429221bba77ee69f896a2039"
 
 [[package]]
 name = "dj-database-url"
@@ -356,7 +375,7 @@ gitdb = ">=4.0.1,<5"
 name = "idna"
 version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -613,7 +632,7 @@ python-versions = ">=3.6"
 name = "requests"
 version = "2.28.1"
 description = "Python HTTP for Humans."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7, <4"
 
@@ -741,7 +760,7 @@ python-versions = ">=3.6"
 name = "urllib3"
 version = "1.26.12"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, <4"
 
@@ -753,7 +772,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6146ef69a62ebb020e00fb41b41c9f79efaa3ef99800a8c631889fc040272c0c"
+content-hash = "127bc27cb80c05dbf7a9dd15c6f1b9d302bcbd0878685bfc928dbd444d4d7c3e"
 
 [metadata.files]
 asgiref = [
@@ -840,6 +859,7 @@ coverage = [
     {file = "coverage-6.5.0-pp36.pp37.pp38-none-any.whl", hash = "sha256:1431986dac3923c5945271f169f59c45b8802a114c8f548d611f2015133df77a"},
     {file = "coverage-6.5.0.tar.gz", hash = "sha256:f642e90754ee3e06b0e7e51bce3379590e76b7f76b708e1a71ff043f87025c84"},
 ]
+dbca-utils = []
 dj-database-url = [
     {file = "dj-database-url-1.0.0.tar.gz", hash = "sha256:ccf3e8718f75ddd147a1e212fca88eecdaa721759ee48e38b485481c77bca3dc"},
     {file = "dj_database_url-1.0.0-py3-none-any.whl", hash = "sha256:cd354a3b7a9136d78d64c17b2aec369e2ae5616fbca6bfbe435ef15bb372ce39"},

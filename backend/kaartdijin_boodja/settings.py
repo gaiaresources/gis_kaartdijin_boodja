@@ -14,8 +14,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import pathlib
 
 # Third-Party
-import decouple
-import dj_database_url
+import decouple  # type: ignore[import]
+import dj_database_url  # type: ignore[import]
 
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "dbca_utils.middleware.SSOLoginMiddleware",
 ]
 ROOT_URLCONF = "kaartdijin_boodja.urls"
 TEMPLATES = [
