@@ -1,7 +1,64 @@
 # Kaartdijin Boodja
+Kaartdijin Boodja (_meaning "Knowledge of Country"_) is a web application for managing a catalogue of GIS layers and
+publishing them for the Department of Biodiversity, Conservation and Attractions (DBCA).
 
 ## Backend
-TODO
+The backend of Kaartdijin Boodja is a [Python](https://www.python.org/) [Django](https://www.djangoproject.com/) project
+using [Django REST Framework](https://www.django-rest-framework.org/) backed by a [PostgreSQL](https://www.postgresql.org/)
+database. The backend uses [Poetry](https://python-poetry.org/) to manage its dependencies, and is linted, type-checked
+& unit-tested using `flake8`, `mypy` and `pytest`.
+
+### Requirements
+* [Python 3.10](https://www.python.org/downloads/release/python-3100/)
+* [Poetry](https://python-poetry.org/)
+
+### Development
+#### Installation
+To get a standard development environment up and running using Poetry and virtual environments:
+```shell
+# Ensure that Python 3.10 is currently activated
+$ python3 --version
+Python 3.10.4
+
+# Create a virtual environment and install dependencies using Poetry
+# The dependencies are installed from the `poetry.lock` file, providing
+# consistent and reproducible installations across any machine.
+$ poetry install
+
+# Enter the Poetry virtual environment shell before usage
+$ poetry shell
+```
+
+#### Usage
+Linting, type checking and unit testing are managed using the `poe` task runner:
+```shell
+$ poe lint
+$ poe type
+$ poe test
+```
+
+To run a development server, use the `Django` `manage.py` script:
+```shell
+$ DEBUG=True python3 manage.py runserver
+```
+
+### Configuration
+The backend environment requires the following environment variables to be set:
+```
+SECRET_KEY=...
+DATABASE_URL=...
+```
+For convenience, these can also be defined in a `.env` file that will be loaded at runtime.
+
+### Structure
+The backend is structured as a traditional Django project using Django REST Framework, with two internal Django
+"apps" (the Catalogue and Publisher).
+
+For more information on the project structure, see the following links:
+* [DBCA-WA Django Base Template](https://github.com/dbca-wa/django-base-template)
+* [WeMake Typed Django Template](https://github.com/wemake-services/wemake-django-template)
+* [Django Quickstart](https://docs.djangoproject.com/en/3.2/intro/tutorial01/)
+* [Django REST Framework Quickstart](https://www.django-rest-framework.org/tutorial/quickstart/)
 
 ## Frontend
 
