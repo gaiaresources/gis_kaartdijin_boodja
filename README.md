@@ -2,6 +2,23 @@
 Kaartdijin Boodja (_meaning "Knowledge of Country"_) is a web application for managing a catalogue of GIS layers and
 publishing them for the Department of Biodiversity, Conservation and Attractions (DBCA).
 
+## Table of Contents
+1. [Backend](#backend)
+    1. [Requirements](#requirements)
+    2. [Development](#development)
+        1. [Installation][#installation]
+        2. [Usage][#usage]
+    3. [Configuration](#configuration)
+    4. [Structure](#structure)
+2. [Frontend](#frontend)
+    1. [Requirements](#requirements-1)
+    2. [Development](#development-1)
+        1. [Installation][#installation-1]
+        2. [Building][#building]
+        2. [Development Environment][#development-environment]
+    3. [Configuration](#configuration-1)
+    4. [Structure](#structure-1)
+
 ## Backend
 The backend of Kaartdijin Boodja is a [Python](https://www.python.org/) [Django](https://www.djangoproject.com/) project
 using [Django REST Framework](https://www.django-rest-framework.org/) backed by a [PostgreSQL](https://www.postgresql.org/)
@@ -43,7 +60,7 @@ $ DEBUG=True python3 manage.py runserver
 ```
 
 ### Configuration
-The backend environment requires the following environment variables to be set:
+The backend requires the following environment variables to be set:
 ```
 SECRET_KEY=...
 DATABASE_URL=...
@@ -61,24 +78,30 @@ For more information on the project structure, see the following links:
 * [Django REST Framework Quickstart](https://www.django-rest-framework.org/tutorial/quickstart/)
 
 ## Frontend
+The frontend of Kaartdijin Boodja is a ...
 
-### Building and dev server
+### Requirements
+* NodeJS ...
+* NPM ...
 
-  #### Installing packages
-  Standard fare:
-    `npm i` to install and/or appropriately update packages and their dependencies
-    `npm ci` to clean install, which installs the exact versions of all packages and dependencies listed in the
-    `package-lock.json` file. Using the `ci` flag is deterministic and reproducible.
+### Development
+#### Installation
+Standard fare:
+* `npm i` to install and/or appropriately update packages and their dependencies
+* `npm ci` to clean install, which installs the exact versions of all packages and dependencies listed in the
+  `package-lock.json` file. Using the `ci` flag is deterministic and reproducible.
 
-  #### Building
-  `npm build`, Viola!
+#### Building
+`npm build`, Viola!
 
-  #### Development environment
-  `npm dev`
+#### Development Environment
+`npm dev`
+
+### Configuration
+The frontend requires the following...
 
 ### Structure
-
-The frontend is broadly split into 3 layers 
+The frontend is broadly split into 3 layers.
 They are:
 - `backend`
   - Concerned with fetching raw data from external sources
