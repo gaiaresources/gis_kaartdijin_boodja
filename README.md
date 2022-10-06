@@ -91,7 +91,7 @@ To install and/or appropriately update packages and their dependencies:
 $ npm i
 ```
 
-To clean install, which installs the _exact_ versions of all the packages and dependencies listed in the
+To perform a clean install, which installs the _exact_ versions of all the packages and dependencies listed in the
 `package-lock.json` file:
 ```shell
 $ npm ci
