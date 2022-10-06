@@ -61,7 +61,7 @@ $ DEBUG=True python3 manage.py runserver
 
 ### Configuration
 The backend requires the following environment variables to be set:
-```
+```shell
 SECRET_KEY=...
 DATABASE_URL=...
 ```
@@ -86,16 +86,29 @@ The frontend of Kaartdijin Boodja is a ...
 
 ### Development
 #### Installation
-Standard fare:
-* `npm i` to install and/or appropriately update packages and their dependencies
-* `npm ci` to clean install, which installs the exact versions of all packages and dependencies listed in the
-  `package-lock.json` file. Using the `ci` flag is deterministic and reproducible.
+To install and/or appropriately update packages and their dependencies:
+```shell
+$ npm i
+```
+
+To clean install, which installs the _exact_ versions of all the packages and dependencies listed in the
+`package-lock.json` file:
+```shell
+$ npm ci
+```
+Using the `ci` flag is deterministic and provides reproducible installations.
 
 #### Building
-`npm build`, Viola!
+To build the project:
+```shell
+$ npm run build
+```
 
 #### Development Environment
-`npm dev`
+To run a development server:
+```shell
+$ npm run dev
+```
 
 ### Configuration
 The frontend requires the following...
