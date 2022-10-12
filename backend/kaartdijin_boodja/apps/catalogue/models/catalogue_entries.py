@@ -1,0 +1,54 @@
+"""Kaartdijin Boodja Catalogue Django Application Catalogue Entry Models."""
+
+
+# Third-Party
+from django.contrib import auth
+from django.db import models
+
+# Local
+from . import layer_submissions
+
+
+# Shortcuts
+UserModel = auth.get_user_model()  # TODO -> Does this work with SSO?
+
+
+class CatalogueEntryStatus(models.IntegerChoices):
+    """Enumeration for a Catalogue Entry Status."""
+    DRAFT = 1
+    LOCKED = 2
+    CANCELLED = 3
+
+
+class CatalogueEntry(models.Model):
+    """Model for a Catalogue Entry."""
+    name = models.TextField()
+    description = models.TextField()
+    layer_submission = models.ForeignKey(layer_submissions.LayerSubmission, on_delete=models.PROTECT)
+    status = models.IntegerField(choices=CatalogueEntryStatus.choices, default=CatalogueEntryStatus.DRAFT)
+    updated_at = models.DateTimeField(auto_now=True)
+    custodian = models.ForeignKey(
+        UserModel,
+        default=None,
+        blank=True,
+        null=True,
+        related_name="custody",
+        on_delete=models.SET_NULL,
+    )
+    assigned_to = models.ForeignKey(
+        UserModel,
+        default=None,
+        blank=True,
+        null=True,
+        related_name="assigned",
+        on_delete=models.SET_NULL,
+    )
+
+    def __str__(self) -> str:
+        """Provides a string representation of the object.
+
+        Returns:
+            str: Human readable string representation of the object.
+        """
+        # Generate String and Return
+        return f"{self.name}"
