@@ -13,7 +13,10 @@
             "is_staff": true,
             "is_active": true,
             "date_joined": "2022-10-13T04:13:18.176123+00:00",
-            "groups": [],
+            "groups": [
+                1,
+                2
+            ],
             "user_permissions": []
         }
     },
@@ -31,7 +34,9 @@
             "is_staff": true,
             "is_active": true,
             "date_joined": "2022-10-13T04:25:55.812847+00:00",
-            "groups": [],
+            "groups": [
+                2
+            ],
             "user_permissions": []
         }
     },
