@@ -18,8 +18,15 @@ Examples:
 
 
 # Third-Party
+from django import conf
 from django import urls
 from django.contrib import admin
+
+
+# Admin Site Settings
+admin.site.site_header = conf.settings.PROJECT_TITLE
+admin.site.index_title = conf.settings.PROJECT_TITLE
+admin.site.site_title = conf.settings.PROJECT_TITLE
 
 
 # Django URL Patterns
