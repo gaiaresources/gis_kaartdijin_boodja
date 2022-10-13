@@ -14,6 +14,11 @@ class LayerSymbology(models.Model):
     file = models.URLField()
     catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
 
+    class Meta:
+        """Layer Symbology Model Metadata."""
+        verbose_name = "Layer Symbology"
+        verbose_name_plural = "Layer Symbologies"
+
     def __str__(self) -> str:
         """Provides a string representation of the object.
 

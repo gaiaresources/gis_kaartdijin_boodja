@@ -22,6 +22,11 @@ class WebhookNotification(models.Model):
     url = models.URLField()
     catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
 
+    class Meta:
+        """Webhook Notification Model Metadata."""
+        verbose_name = "Webhook Notification"
+        verbose_name_plural = "Webhook Notifications"
+
     def __str__(self) -> str:
         """Provides a string representation of the object.
 

@@ -29,6 +29,11 @@ class LayerAttribute(models.Model):
     order = models.PositiveIntegerField()
     catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
 
+    class Meta:
+        """Layer Attribute Model Metadata."""
+        verbose_name = "Layer Attribute"
+        verbose_name_plural = "Layer Attributes"
+
     def __str__(self) -> str:
         """Provides a string representation of the object.
 

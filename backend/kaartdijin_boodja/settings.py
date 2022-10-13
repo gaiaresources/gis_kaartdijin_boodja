@@ -46,10 +46,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_yasg",
+    "kaartdijin_boodja.apps.accounts",
     "kaartdijin_boodja.apps.catalogue",
     "kaartdijin_boodja.apps.publisher",
     "kaartdijin_boodja.apps.swagger",
-    "kaartdijin_boodja.apps.users",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

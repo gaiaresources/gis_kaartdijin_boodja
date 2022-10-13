@@ -19,6 +19,11 @@ class LayerSubscription(models.Model):
     status = models.IntegerField(choices=LayerSubscriptionStatus.choices, default=LayerSubscriptionStatus.ACTIVE)
     subscribed_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        """Layer Subscription Model Metadata."""
+        verbose_name = "Layer Subscription"
+        verbose_name_plural = "Layer Subscriptions"
+
     def __str__(self) -> str:
         """Provides a string representation of the object.
 

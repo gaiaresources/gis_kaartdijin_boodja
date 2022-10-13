@@ -44,6 +44,11 @@ class CatalogueEntry(models.Model):
         on_delete=models.SET_NULL,
     )
 
+    class Meta:
+        """Catalogue Entry Model Metadata."""
+        verbose_name = "Catalogue Entry"
+        verbose_name_plural = "Catalogue Entries"
+
     def __str__(self) -> str:
         """Provides a string representation of the object.
 

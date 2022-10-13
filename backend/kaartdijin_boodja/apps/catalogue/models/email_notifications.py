@@ -22,6 +22,11 @@ class EmailNotification(models.Model):
     email = models.TextField()
     catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
 
+    class Meta:
+        """Email Notification Model Metadata."""
+        verbose_name = "Email Notification"
+        verbose_name_plural = "Email Notifications"
+
     def __str__(self) -> str:
         """Provides a string representation of the object.
 

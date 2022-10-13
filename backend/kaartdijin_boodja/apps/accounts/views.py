@@ -1,4 +1,4 @@
-"""Kaartdijin Boodja Users Django Application Views."""
+"""Kaartdijin Boodja Accounts Django Application Views."""
 
 
 # Third-Party

@@ -28,6 +28,7 @@ urlpatterns = [
     urls.path("admin/", admin.site.urls),
 
     # API Endpoints
+    urls.path("api/accounts/", urls.include("kaartdijin_boodja.apps.accounts.urls")),
     urls.path("api/docs/", urls.include("kaartdijin_boodja.apps.swagger.urls")),
-    urls.path("api/users/", urls.include("kaartdijin_boodja.apps.users.urls")),
+    urls.path("api/catalogue/", urls.include("kaartdijin_boodja.apps.catalogue.urls")),
 ]

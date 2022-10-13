@@ -20,6 +20,11 @@ class LayerSubmission(models.Model):
     status = models.IntegerField(choices=LayerSubmissionStatus.choices, default=LayerSubmissionStatus.SUBMITTED)
     submitted_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        """Layer Submission Model Metadata."""
+        verbose_name = "Layer Submission"
+        verbose_name_plural = "Layer Submissions"
+
     def __str__(self) -> str:
         """Provides a string representation of the object.
 

@@ -1,4 +1,4 @@
-"""Kaartdijin Boodja Users Django Application Serializers."""
+"""Kaartdijin Boodja Accounts Django Application Serializers."""
 
 
 # Third-Party

@@ -1,4 +1,4 @@
-"""Kaartdijin Boodja Users Django Application URLs."""
+"""Kaartdijin Boodja Accounts Django Application URLs."""
 
 
 # Third-Party
@@ -14,5 +14,5 @@ router.register("users", views.UserViewSet)
 router.register("groups", views.GroupViewSet)
 
 
-# Users URL Patterns
+# Accounts URL Patterns
 urlpatterns = router.urls

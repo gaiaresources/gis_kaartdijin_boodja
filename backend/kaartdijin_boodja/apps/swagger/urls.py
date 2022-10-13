@@ -11,7 +11,7 @@ from . import views
 # Swagger URL Patterns
 urlpatterns = [
    # Redirect Index to Swagger UI
-   urls.re_path(r"^$", generic.RedirectView.as_view(url="schema-swagger-ui", permanent=True)),
+   urls.re_path(r"^$", generic.RedirectView.as_view(url="swagger", permanent=True)),
 
    # Swagger URLs
    urls.re_path(r"^schema(?P<format>\.json|\.yaml)$", views.SchemaView.without_ui(), name="schema-spec"),

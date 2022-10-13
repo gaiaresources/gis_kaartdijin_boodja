@@ -1,4 +1,4 @@
-"""Kaartdijin Boodja Catalogue Django Application Configuration."""
+"""Kaartdijin Boodja Publisher Django Application Configuration."""
 
 
 # Third-Party
