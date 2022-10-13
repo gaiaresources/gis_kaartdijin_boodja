@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "kaartdijin-boodja"
 version = "0.1.0"
-description = "DBCA CDDP Catalogue and Publishing Django Web Application"
+description = "DBCA CDDP Catalogue and Publishing Django REST API"
 authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 
 [tool.poetry.dependencies]
@@ -11,6 +11,7 @@ djangorestframework = "^3.14.0"
 python-decouple = "^3.6"
 dj-database-url = "^1.0.0"
 dbca-utils = {git = "https://github.com/dbca-wa/dbca-utils.git"}
+drf-yasg = "^1.21.4"
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.16.2"
@@ -31,6 +32,8 @@ pytest-django = "^4.5.2"
 django-coverage-plugin = "^2.0.3"
 
 [tool.poe.tasks]
+manage = "python3 manage.py"
+dev = "python3 manage.py runserver"
 test = "pytest tests"
 type = "mypy tests kaartdijin_boodja"
 lint = "flake8 tests kaartdijin_boodja"
@@ -42,6 +45,7 @@ disallow_untyped_defs = true
 disallow_incomplete_defs = true
 disallow_untyped_decorators = true
 disallow_any_unimported = true
+ignore_missing_imports = true
 warn_return_any = true
 warn_unused_ignores = true
 no_implicit_optional = true
@@ -53,7 +57,7 @@ django_settings_module = "kaartdijin_boodja.settings"
 
 [tool.flake8]
 max-line-length = 120
-exclude = [".git", "__pycache__", ".pytest_cache", ".mypy_cache"]
+exclude = [".git", "__pycache__", ".pytest_cache", ".mypy_cache", "migrations"]
 per-file-ignores = ["__init__.py:F401", "tests/*.py:S101"]
 enable-extensions = "G"
 docstring-convention = "google"

@@ -24,5 +24,10 @@ from django.contrib import admin
 
 # Django URL Patterns
 urlpatterns = [
+    # Django Administration
     urls.path("admin/", admin.site.urls),
+
+    # API Endpoints
+    urls.path("api/docs/", urls.include("kaartdijin_boodja.apps.swagger.urls")),
+    urls.path("api/users/", urls.include("kaartdijin_boodja.apps.users.urls")),
 ]

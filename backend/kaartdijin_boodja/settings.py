@@ -14,13 +14,18 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import pathlib
 
 # Third-Party
-import decouple  # type: ignore[import]
-import dj_database_url  # type: ignore[import]
+import decouple
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
+
+# Project specific settings
+PROJECT_TITLE = "Kaartdijin Boodja"
+PROJECT_DESCRIPTION = "DBCA CDDP Catalogue and Publishing Django REST API"
+PROJECT_VERSION = "v1"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -39,8 +44,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "drf_yasg",
     "kaartdijin_boodja.apps.catalogue",
     "kaartdijin_boodja.apps.publisher",
+    "kaartdijin_boodja.apps.swagger",
+    "kaartdijin_boodja.apps.users",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -108,3 +117,10 @@ STATIC_URL = "/static/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Django REST Framework Settings
+# https://www.django-rest-framework.org/api-guide/settings/
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 100,
+}
