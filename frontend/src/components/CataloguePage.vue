@@ -1,17 +1,48 @@
 <script setup lang="ts">
-  import DataTable from "./DataTable.vue";
+  import LayerSubscriptionDataTable from './dataTable/LayerSubscriptionDataTable.vue';
+  import { ref, onMounted } from 'vue';
+  import { useCatalogueEntryStore } from '../stores/CatalogueEntryStore';
+  import { useLayerSubscriptionStore } from '../stores/LayerSubscriptionStore';
+  import CatalogueEntryDataTable from './dataTable/CatalogueEntryDataTable.vue';
+  import { storeToRefs } from 'pinia';
+  import type { Ref } from 'vue';
+
+  type SelectedTab = 'catalogueEntries'|'layerSubmissions'|'layerSubscriptions';
+
+  const selectedTab: Ref<SelectedTab> = ref('catalogueEntries');
+
+  function setSelectedTab (tab: SelectedTab) {
+    selectedTab.value = tab;
+  }
+
+  // get Stores and fetch with `storeToRef` to
+  const catalogueEntryStore = useCatalogueEntryStore();
+  const { catalogueEntries } = storeToRefs(catalogueEntryStore);
+  const { getCatalogueEntries } = catalogueEntryStore;
+
+  const layerSubscriptionStore = useLayerSubscriptionStore();
+  const { layerSubscriptions } = storeToRefs(layerSubscriptionStore);
+  const { getLayerSubscriptions } = layerSubscriptionStore;
+
+  onMounted(() => {
+    getCatalogueEntries();
+    getLayerSubscriptions();
+  });
 </script>
 
 <template>
   <ul class="nav nav-pills mb-4">
     <li class="nav-item">
-      <a class="nav-link" aria-current="page" href="#">Catalogue Entries</a>
+      <button class="nav-link" aria-current="page" href="#" :class='{ active: selectedTab === "catalogueEntries" }'
+              @click='setSelectedTab("catalogueEntries")'>Catalogue Entries</button>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Layer Submissions</a>
+      <button class="nav-link" href="#" :class='{ active: selectedTab === "layerSubmissions" }'
+              @click='setSelectedTab("layerSubmissions")'>Layer Submissions</button>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="#">Layer Subscriptions</a>
+      <button class="nav-link" href="#" :class='{ active: selectedTab === "layerSubscriptions" }'
+              @click='setSelectedTab("layerSubscriptions")'>Layer Subscriptions</button>
     </li>
   </ul>
   <div class="card">
@@ -51,7 +82,8 @@
           </div>
         </div>
       </div>
-      <DataTable/>
+      <catalogue-entry-data-table v-if='selectedTab === "catalogueEntries"' :rows="catalogueEntries"/>
+      <layer-subscription-data-table v-if='selectedTab === "layerSubscriptions"' :rows="layerSubscriptions"/>
     </div>
   </div>
 </template>
