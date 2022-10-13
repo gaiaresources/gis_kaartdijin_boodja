@@ -4,6 +4,9 @@
 # Third-Party
 from django.db import models
 
+# Local
+from . import catalogue_entries
+
 
 class LayerSubmissionStatus(models.IntegerChoices):
     """Enumeration for a Layer Submission Status."""
@@ -19,6 +22,11 @@ class LayerSubmission(models.Model):
     file = models.URLField()
     status = models.IntegerField(choices=LayerSubmissionStatus.choices, default=LayerSubmissionStatus.SUBMITTED)
     submitted_at = models.DateTimeField(auto_now_add=True)
+    catalogue_entry = models.ForeignKey(
+        catalogue_entries.CatalogueEntry,
+        related_name="layers",
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         """Layer Submission Model Metadata."""

@@ -4,6 +4,9 @@
 # Third-Party
 from django.db import models
 
+# Local
+from . import catalogue_entries
+
 
 class LayerSubscriptionStatus(models.IntegerChoices):
     """Enumeration for a Layer Subscription Status."""
@@ -18,6 +21,11 @@ class LayerSubscription(models.Model):
     frequency = models.DurationField()
     status = models.IntegerField(choices=LayerSubscriptionStatus.choices, default=LayerSubscriptionStatus.ACTIVE)
     subscribed_at = models.DateTimeField(auto_now_add=True)
+    catalogue_entry = models.OneToOneField(
+        catalogue_entries.CatalogueEntry,
+        related_name="subscription",
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         """Layer Subscription Model Metadata."""

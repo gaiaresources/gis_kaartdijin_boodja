@@ -5,7 +5,7 @@
         "fields": {
             "name": "Layer Symbology 1",
             "file": "https://www.github.com/",
-            "catalogue_entry": 1
+            "layer": 1
         }
     },
     {
@@ -14,7 +14,7 @@
         "fields": {
             "name": "Layer Symbology 2",
             "file": "https://about.gitlab.com/",
-            "catalogue_entry": 2
+            "layer": 2
         }
     },
     {
@@ -23,7 +23,7 @@
         "fields": {
             "name": "Layer Symbology 3",
             "file": "https://bitbucket.org/",
-            "catalogue_entry": 3
+            "layer": 3
         }
     }
 ]

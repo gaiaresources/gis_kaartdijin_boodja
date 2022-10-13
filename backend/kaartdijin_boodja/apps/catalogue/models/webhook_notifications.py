@@ -20,7 +20,11 @@ class WebhookNotification(models.Model):
     name = models.TextField()
     type = models.IntegerField(choices=WebhookNotificationType.choices)  # noqa: A003
     url = models.URLField()
-    catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
+    catalogue_entry = models.ForeignKey(
+        catalogue_entries.CatalogueEntry,
+        related_name="webhook_notifications",
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         """Webhook Notification Model Metadata."""

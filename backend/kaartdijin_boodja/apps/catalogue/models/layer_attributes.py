@@ -5,7 +5,7 @@
 from django.db import models
 
 # Local
-from . import catalogue_entries
+from . import layer_submissions
 
 
 class LayerAttributeType(models.IntegerChoices):
@@ -27,7 +27,11 @@ class LayerAttribute(models.Model):
     name = models.TextField()
     type = models.IntegerField(choices=LayerAttributeType.choices)  # noqa: A003
     order = models.PositiveIntegerField()
-    catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
+    layer = models.ForeignKey(
+        layer_submissions.LayerSubmission,
+        related_name="attributes",
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         """Layer Attribute Model Metadata."""

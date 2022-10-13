@@ -20,7 +20,11 @@ class EmailNotification(models.Model):
     name = models.TextField()
     type = models.IntegerField(choices=EmailNotificationType.choices)  # noqa: A003
     email = models.TextField()
-    catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
+    catalogue_entry = models.ForeignKey(
+        catalogue_entries.CatalogueEntry,
+        related_name="email_notifications",
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         """Email Notification Model Metadata."""

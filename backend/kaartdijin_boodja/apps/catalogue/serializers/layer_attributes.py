@@ -15,4 +15,4 @@ class LayerAttributeSerializer(serializers.ModelSerializer):
     class Meta:
         """Layer Attribute Model Serializer Metadata."""
         model = models.layer_attributes.LayerAttribute
-        fields = ("id", "name", "type", "order")
+        fields = ("id", "name", "type", "order", "layer")

@@ -5,9 +5,6 @@
 from django.contrib import auth
 from django.db import models
 
-# Local
-from . import layer_submissions
-
 
 # Shortcuts
 UserModel = auth.get_user_model()  # TODO -> Does this work with SSO?
@@ -24,7 +21,11 @@ class CatalogueEntry(models.Model):
     """Model for a Catalogue Entry."""
     name = models.TextField()
     description = models.TextField()
-    layer_submission = models.ForeignKey(layer_submissions.LayerSubmission, on_delete=models.PROTECT)
+    active_layer = models.OneToOneField(
+        "catalogue.LayerSubmission",
+        related_name="active_catalogue_entry",
+        on_delete=models.PROTECT,
+    )
     status = models.IntegerField(choices=CatalogueEntryStatus.choices, default=CatalogueEntryStatus.DRAFT)
     updated_at = models.DateTimeField(auto_now=True)
     custodian = models.ForeignKey(

@@ -15,4 +15,4 @@ class WebhookNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         """Webhook Notification Model Serializer Metadata."""
         model = models.webhook_notifications.WebhookNotification
-        fields = ("id", "name", "type", "url")
+        fields = ("id", "name", "type", "url", "catalogue_entry")

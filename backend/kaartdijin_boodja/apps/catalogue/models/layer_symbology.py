@@ -5,14 +5,18 @@
 from django.db import models
 
 # Local
-from . import catalogue_entries
+from . import layer_submissions
 
 
 class LayerSymbology(models.Model):
     """Model for a Layer Symbology."""
     name = models.TextField()
     file = models.URLField()
-    catalogue_entry = models.ForeignKey(catalogue_entries.CatalogueEntry, on_delete=models.CASCADE)
+    layer = models.OneToOneField(
+        layer_submissions.LayerSubmission,
+        related_name="symbology",
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         """Layer Symbology Model Metadata."""

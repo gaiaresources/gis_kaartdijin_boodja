@@ -15,4 +15,4 @@ class EmailNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         """Email Notification Model Serializer Metadata."""
         model = models.email_notifications.EmailNotification
-        fields = ("id", "name", "type", "email")
+        fields = ("id", "name", "type", "email", "catalogue_entry")

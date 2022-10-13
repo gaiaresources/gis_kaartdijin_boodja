@@ -14,8 +14,6 @@ GroupModel = auth_models.Group
 
 class UserSerializer(serializers.ModelSerializer):
     """User Model Serializer."""
-    groups = serializers.StringRelatedField(many=True)  # type: ignore[var-annotated]
-
     class Meta:
         """User Model Serializer Metadata."""
         model = UserModel
@@ -24,8 +22,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class GroupSerializer(serializers.ModelSerializer):
     """Group Model Serializer."""
-    permissions = serializers.StringRelatedField(many=True)  # type: ignore[var-annotated]
-
     class Meta:
         """Group Model Serializer Metadata."""
         model = GroupModel

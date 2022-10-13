@@ -15,4 +15,4 @@ class LayerSubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         """Layer Subscription Model Serializer Metadata."""
         model = models.layer_subscriptions.LayerSubscription
-        fields = ("id", "name", "url", "frequency", "status", "subscribed_at")
+        fields = ("id", "name", "url", "frequency", "status", "subscribed_at", "catalogue_entry")

@@ -15,4 +15,15 @@ class LayerSubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         """Layer Submission Model Serializer Metadata."""
         model = models.layer_submissions.LayerSubmission
-        fields = ("id", "name", "description", "file", "status", "submitted_at")
+        fields = (
+            "id",
+            "name",
+            "description",
+            "file",
+            "status",
+            "submitted_at",
+            "catalogue_entry",
+            "attributes",
+            "metadata",
+            "symbology",
+        )
