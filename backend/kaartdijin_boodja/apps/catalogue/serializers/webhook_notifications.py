@@ -10,7 +10,7 @@ from .. import models
 
 class WebhookNotificationSerializer(serializers.ModelSerializer):
     """Webhook Notification Model Serializer."""
-    type = serializers.CharField(source="get_type_display")
+    type = serializers.CharField(source="get_type_display")  # noqa: A003
 
     class Meta:
         """Webhook Notification Model Serializer Metadata."""

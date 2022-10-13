@@ -10,7 +10,7 @@ from .. import models
 
 class EmailNotificationSerializer(serializers.ModelSerializer):
     """Email Notification Model Serializer."""
-    type = serializers.CharField(source="get_type_display")
+    type = serializers.CharField(source="get_type_display")  # noqa: A003
 
     class Meta:
         """Email Notification Model Serializer Metadata."""

@@ -10,7 +10,7 @@ from .. import models
 
 class LayerAttributeSerializer(serializers.ModelSerializer):
     """Layer Attribute Model Serializer."""
-    type = serializers.CharField(source="get_type_display")
+    type = serializers.CharField(source="get_type_display")  # noqa: A003
 
     class Meta:
         """Layer Attribute Model Serializer Metadata."""
