@@ -14,6 +14,6 @@ urlpatterns = [
 
     # Swagger URLs
     urls.path("schema/", views.SpectacularAPIView.as_view(), name="schema"),
-    urls.path("swagger/", views.SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
-    urls.path("redoc/", views.SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    urls.path("swagger/", views.SpectacularSwaggerView.as_view(), name="swagger"),
+    urls.path("redoc/", views.SpectacularRedocView.as_view(), name="redoc"),
 ]
