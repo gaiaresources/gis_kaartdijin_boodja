@@ -12,6 +12,7 @@ python-decouple = "^3.6"
 dj-database-url = "^1.0.0"
 dbca-utils = {git = "https://github.com/dbca-wa/dbca-utils.git"}
 drf-yasg = "^1.21.4"
+django-filter = "^22.1"
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.16.2"
