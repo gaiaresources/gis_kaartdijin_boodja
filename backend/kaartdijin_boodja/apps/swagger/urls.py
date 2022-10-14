@@ -9,8 +9,8 @@ from drf_spectacular import views
 
 # Swagger URL Patterns
 urlpatterns = [
-   # Redirect Index to Swagger UI
-   urls.path("", generic.RedirectView.as_view(url="swagger", permanent=True)),
+    # Redirect Index to Swagger UI
+    urls.path("", generic.RedirectView.as_view(url="swagger", permanent=True)),
 
     # Swagger URLs
     urls.path("schema/", views.SpectacularAPIView.as_view(), name="schema"),

@@ -13,7 +13,7 @@ class CatalogueEntryFilter(filters.FilterSet):
     updated = filters.IsoDateTimeFromToRangeFilter(field_name="updated_at")
 
     class Meta:
-        """Catalogue Entry Filter Metadata"""
+        """Catalogue Entry Filter Metadata."""
         model = models.catalogue_entries.CatalogueEntry
         fields = ("assigned_to", "custodian", "status", "updated")
 
@@ -21,54 +21,58 @@ class CatalogueEntryFilter(filters.FilterSet):
 class EmailNotificationFilter(filters.FilterSet):
     """Email Notification Filter."""
     class Meta:
-        """Email Notification Filter Metadata"""
+        """Email Notification Filter Metadata."""
         model = models.email_notifications.EmailNotification
-        fields = ["name"]
+        fields = ()
 
 
 class LayerAttributeFilter(filters.FilterSet):
     """Layer Attribute Filter."""
     class Meta:
-        """Layer Attribute Filter Metadata"""
+        """Layer Attribute Filter Metadata."""
         model = models.layer_attributes.LayerAttribute
-        fields = ["name"]
+        fields = ()
 
 
 class LayerMetadataFilter(filters.FilterSet):
     """Layer Metadata Filter."""
     class Meta:
-        """Layer Metadata Filter Metadata."""
+        """Layer Metadata Filter Metadata.."""
         model = models.layer_metadata.LayerMetadata
-        fields = ["name"]
+        fields = ()
 
 
 class LayerSubmissionFilter(filters.FilterSet):
     """Layer Submission Filter."""
+    submitted = filters.IsoDateTimeFromToRangeFilter(field_name="submitted_at")
+
     class Meta:
-        """Layer Submission Filter Metadata"""
+        """Layer Submission Filter Metadata."""
         model = models.layer_submissions.LayerSubmission
-        fields = ["name"]
+        fields = ["status", "submitted"]
 
 
 class LayerSubscriptionFilter(filters.FilterSet):
     """Layer Subscription Filter."""
+    subscribed = filters.IsoDateTimeFromToRangeFilter(field_name="subscribed_at")
+
     class Meta:
-        """Layer Subscription Filter Metadata"""
+        """Layer Subscription Filter Metadata."""
         model = models.layer_subscriptions.LayerSubscription
-        fields = ["name"]
+        fields = ["status", "subscribed"]
 
 
 class LayerSymbologyFilter(filters.FilterSet):
     """Layer Symbology Filter."""
     class Meta:
-        """Layer Symbology Filter Metadata"""
+        """Layer Symbology Filter Metadata."""
         model = models.layer_symbology.LayerSymbology
-        fields = ["name"]
+        fields = ()
 
 
 class WebhookNotificationFilter(filters.FilterSet):
     """Webhook Notification Filter."""
     class Meta:
-        """Webhook Notification Filter Metadata"""
+        """Webhook Notification Filter Metadata."""
         model = models.webhook_notifications.WebhookNotification
-        fields = ["name"]
+        fields = ()
