@@ -11,7 +11,7 @@ djangorestframework = "^3.14.0"
 python-decouple = "^3.6"
 dj-database-url = "^1.0.0"
 dbca-utils = {git = "https://github.com/dbca-wa/dbca-utils.git"}
-drf-yasg = "^1.21.4"
+drf-spectacular = "^0.24.2"
 django-filter = "^22.1"
 
 [tool.poetry.group.dev.dependencies]
@@ -45,7 +45,7 @@ check_untyped_defs = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 disallow_untyped_decorators = true
-disallow_any_unimported = true
+disallow_any_unimported = false
 ignore_missing_imports = true
 warn_return_any = true
 warn_unused_ignores = true
