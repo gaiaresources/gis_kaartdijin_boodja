@@ -18,11 +18,24 @@ Examples:
 
 
 # Third-Party
+from django import conf
 from django import urls
 from django.contrib import admin
 
 
+# Admin Site Settings
+admin.site.site_header = conf.settings.PROJECT_TITLE
+admin.site.index_title = conf.settings.PROJECT_TITLE
+admin.site.site_title = conf.settings.PROJECT_TITLE
+
+
 # Django URL Patterns
 urlpatterns = [
+    # Django Administration
     urls.path("admin/", admin.site.urls),
+
+    # API Endpoints
+    urls.path("api/accounts/", urls.include("kaartdijin_boodja.apps.accounts.urls")),
+    urls.path("api/docs/", urls.include("kaartdijin_boodja.apps.swagger.urls")),
+    urls.path("api/catalogue/", urls.include("kaartdijin_boodja.apps.catalogue.urls")),
 ]
