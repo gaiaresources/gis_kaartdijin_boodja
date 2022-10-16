@@ -17,13 +17,6 @@ class CatalogueEntryViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_class = filters.CatalogueEntryFilter
 
 
-class EmailNotificationViewSet(viewsets.ReadOnlyModelViewSet):
-    """Email Notification View Set."""
-    queryset = models.email_notifications.EmailNotification.objects.all()
-    serializer_class = serializers.email_notifications.EmailNotificationSerializer
-    filterset_class = filters.EmailNotificationFilter
-
-
 class LayerAttributeViewSet(viewsets.ReadOnlyModelViewSet):
     """Layer Attribute View Set."""
     queryset = models.layer_attributes.LayerAttribute.objects.all()
@@ -59,8 +52,15 @@ class LayerSymbologyViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_class = filters.LayerSymbologyFilter
 
 
+class EmailNotificationViewSet(viewsets.ReadOnlyModelViewSet):
+    """Email Notification View Set."""
+    queryset = models.notifications.EmailNotification.objects.all()
+    serializer_class = serializers.notifications.EmailNotificationSerializer
+    filterset_class = filters.EmailNotificationFilter
+
+
 class WebhookNotificationViewSet(viewsets.ReadOnlyModelViewSet):
     """Webhook Notification View Set."""
-    queryset = models.webhook_notifications.WebhookNotification.objects.all()
-    serializer_class = serializers.webhook_notifications.WebhookNotificationSerializer
+    queryset = models.notifications.WebhookNotification.objects.all()
+    serializer_class = serializers.notifications.WebhookNotificationSerializer
     filterset_class = filters.WebhookNotificationFilter

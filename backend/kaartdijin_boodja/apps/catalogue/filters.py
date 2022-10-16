@@ -18,14 +18,6 @@ class CatalogueEntryFilter(filters.FilterSet):
         fields = ("assigned_to", "custodian", "status", "updated")
 
 
-class EmailNotificationFilter(filters.FilterSet):
-    """Email Notification Filter."""
-    class Meta:
-        """Email Notification Filter Metadata."""
-        model = models.email_notifications.EmailNotification
-        fields = ()
-
-
 class LayerAttributeFilter(filters.FilterSet):
     """Layer Attribute Filter."""
     class Meta:
@@ -70,9 +62,17 @@ class LayerSymbologyFilter(filters.FilterSet):
         fields = ()
 
 
+class EmailNotificationFilter(filters.FilterSet):
+    """Email Notification Filter."""
+    class Meta:
+        """Email Notification Filter Metadata."""
+        model = models.notifications.EmailNotification
+        fields = ()
+
+
 class WebhookNotificationFilter(filters.FilterSet):
     """Webhook Notification Filter."""
     class Meta:
         """Webhook Notification Filter Metadata."""
-        model = models.webhook_notifications.WebhookNotification
+        model = models.notifications.WebhookNotification
         fields = ()
