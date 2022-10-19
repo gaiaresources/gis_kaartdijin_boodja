@@ -36,9 +36,11 @@ export interface LayerSubscriptionFilter extends PaginationFilter {
 }
 
 export interface CatalogueEntryFilter extends PaginationFilter {
+  custodian?: string
   status?: CatalogueStatus
-  subscribedFrom?: string
-  subscribedTo?: string
+  lastUpdatedFrom?: string
+  lastUpdatedTo?: string
+  assignedTo?: string
 }
 
 export interface PaginationState {

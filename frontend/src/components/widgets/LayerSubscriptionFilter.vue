@@ -19,10 +19,10 @@
 </script>
 
 <template>
-  <Select name="Status" :values="['Draft', 'Locked', 'Cancelled']"
+  <Select name="Status" :values="['Draft', 'Locked', 'Cancelled']" :value="tableFilters.status"
           @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Input name="Subscribed from" type="date" placeholder="DD/MM/YYYY"
+  <Input name="Subscribed from" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.subscribedFrom"
          @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Input name="Subscribed to" type="date" placeholder="DD/MM/YYYY"
+  <Input name="Subscribed to" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.subscribedTo"
          @value-updated="(name, value) => setFilter({ name, value })"/>
 </template>
