@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "drf_yasg",
+    "drf_spectacular",
     "django_filters",
     "kaartdijin_boodja.apps.accounts",
     "kaartdijin_boodja.apps.catalogue",
@@ -114,7 +114,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Django REST Framework Settings
 # https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 100,
+}
+
+# DRF Spectacular Settings
+# https://drf-spectacular.readthedocs.io/en/latest/settings.html
+SPECTACULAR_SETTINGS = {
+    "TITLE": PROJECT_TITLE,
+    "DESCRIPTION": PROJECT_DESCRIPTION,
+    "VERSION": PROJECT_VERSION,
+    "SERVE_INCLUDE_SCHEMA": True,
+    "POSTPROCESSING_HOOKS": [],
 }

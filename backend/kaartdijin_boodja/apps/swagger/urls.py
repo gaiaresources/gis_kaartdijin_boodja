@@ -4,17 +4,16 @@
 # Third-Party
 from django import urls
 from django.views import generic
+from drf_spectacular import views
 
-# Local
-from . import views
 
 # Swagger URL Patterns
 urlpatterns = [
-   # Redirect Index to Swagger UI
-   urls.re_path(r"^$", generic.RedirectView.as_view(url="swagger", permanent=True)),
+    # Redirect Index to Swagger UI
+    urls.path("", generic.RedirectView.as_view(url="swagger", permanent=True)),
 
-   # Swagger URLs
-   urls.re_path(r"^schema(?P<format>\.json|\.yaml)$", views.SchemaView.without_ui(), name="schema-spec"),
-   urls.re_path(r"^swagger/$", views.SchemaView.with_ui("swagger"), name="schema-swagger-ui"),
-   urls.re_path(r"^redoc/$", views.SchemaView.with_ui("redoc"), name="schema-redoc-ui"),
+    # Swagger URLs
+    urls.path("schema/", views.SpectacularAPIView.as_view(), name="schema"),
+    urls.path("swagger/", views.SpectacularSwaggerView.as_view(), name="swagger"),
+    urls.path("redoc/", views.SpectacularRedocView.as_view(), name="redoc"),
 ]

@@ -19,11 +19,9 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """User View Set."""
     queryset = UserModel.objects.all()
     serializer_class = serializers.UserSerializer
-    filterset_fields = "__all__"
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     """Group View Set."""
     queryset = GroupModel.objects.all()
     serializer_class = serializers.GroupSerializer
-    filterset_fields = "__all__"
