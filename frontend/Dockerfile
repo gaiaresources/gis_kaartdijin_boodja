@@ -2,11 +2,11 @@
 FROM node:18-alpine
 
 # Set Working Directory
-WORKDIR /app/
+WORKDIR /app
 
 # Install Dependencies
-COPY ./package.json ./package-lock.json /app/
+ADD package.json package-lock.json /app/
 RUN npm ci
 
-# Copy Application
-COPY ./ /app/
+# Add Application
+ADD . /app/

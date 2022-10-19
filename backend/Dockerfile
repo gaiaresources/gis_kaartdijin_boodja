@@ -2,7 +2,7 @@
 FROM python:3.10-alpine
 
 # Set Working Directory
-WORKDIR /app/
+WORKDIR /app
 
 # Upgrade Pip
 RUN pip install --upgrade pip
@@ -15,8 +15,8 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 
 # Install Dependencies
-COPY ./pyproject.toml ./poetry.lock /app/
+ADD pyproject.toml poetry.lock /app/
 RUN poetry install --without dev --no-ansi
 
-# Copy Application
-COPY ./ /app/
+# Add Application
+ADD . /app/
