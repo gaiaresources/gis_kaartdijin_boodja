@@ -10,8 +10,6 @@ from .. import models
 
 class EmailNotificationSerializer(serializers.ModelSerializer):
     """Email Notification Model Serializer."""
-    type = serializers.CharField(source="get_type_display")  # noqa: A003
-
     class Meta:
         """Email Notification Model Serializer Metadata."""
         model = models.notifications.EmailNotification
@@ -20,8 +18,6 @@ class EmailNotificationSerializer(serializers.ModelSerializer):
 
 class WebhookNotificationSerializer(serializers.ModelSerializer):
     """Webhook Notification Model Serializer."""
-    type = serializers.CharField(source="get_type_display")  # noqa: A003
-
     class Meta:
         """Webhook Notification Model Serializer Metadata."""
         model = models.notifications.WebhookNotification

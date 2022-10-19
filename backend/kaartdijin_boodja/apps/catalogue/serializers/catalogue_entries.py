@@ -10,8 +10,6 @@ from .. import models
 
 class CatalogueEntrySerializer(serializers.ModelSerializer):
     """Catalogue Entry Model Serializer."""
-    status = serializers.CharField(source="get_status_display")
-
     class Meta:
         """Catalogue Entry Model Serializer Metadata."""
         model = models.catalogue_entries.CatalogueEntry
