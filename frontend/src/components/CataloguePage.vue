@@ -1,10 +1,9 @@
 <script setup lang="ts">
+  import { ref } from 'vue';
   import LayerSubscriptionDataTable from './dataTable/LayerSubscriptionDataTable.vue';
-  import { ref, onMounted } from 'vue';
-  import { useCatalogueEntryStore } from '../stores/CatalogueEntryStore';
-  import { useLayerSubscriptionStore } from '../stores/LayerSubscriptionStore';
   import CatalogueEntryDataTable from './dataTable/CatalogueEntryDataTable.vue';
-  import { storeToRefs } from 'pinia';
+  import CatalogueEntryFilter from './widgets/CatalogueEntryFilter.vue';
+  import LayerSubscriptionFilter from './widgets/LayerSubscriptionFilter.vue';
   import type { Ref } from 'vue';
 
   type SelectedTab = 'catalogueEntries'|'layerSubmissions'|'layerSubscriptions';
@@ -14,20 +13,6 @@
   function setSelectedTab (tab: SelectedTab) {
     selectedTab.value = tab;
   }
-
-  // get Stores and fetch with `storeToRef` to
-  const catalogueEntryStore = useCatalogueEntryStore();
-  const { catalogueEntries } = storeToRefs(catalogueEntryStore);
-  const { getCatalogueEntries } = catalogueEntryStore;
-
-  const layerSubscriptionStore = useLayerSubscriptionStore();
-  const { layerSubscriptions } = storeToRefs(layerSubscriptionStore);
-  const { getLayerSubscriptions } = layerSubscriptionStore;
-
-  onMounted(() => {
-    getCatalogueEntries();
-    getLayerSubscriptions();
-  });
 </script>
 
 <template>
@@ -60,30 +45,15 @@
           <div id="collapseFilters" class="accordion-collapse collapse show" aria-labelledby="headingFilter" data-bs-parent="#layerSubscriptionAccordion">
             <div class="accordion-body">
               <form class="form d-flex gap-3">
-                <div class="form-floating">
-                  <select id="statusSelect" class="form-select form-select-sm w-auto" aria-label="Status select">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                  <label for="statusSelect">Status</label>
-                </div>
-                <div class="form-floating">
-                  <input id="subscribedFromInput" type="date" class="form-control w-auto" placeholder="DD/MM/YYYY">
-                  <label for="statusSelect">Subscribed from</label>
-                </div>
-                <div class="form-floating">
-                  <input id="subscribedToInput" type="date" class="form-control w-auto" placeholder="DD/MM/YYYY">
-                  <label for="statusSelect">Subscribed to</label>
-                </div>
+                <CatalogueEntryFilter v-if="selectedTab === 'catalogueEntries'"/>
+                <LayerSubscriptionFilter v-if="selectedTab === 'layerSubscriptions'"/>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <catalogue-entry-data-table v-if='selectedTab === "catalogueEntries"' :rows="catalogueEntries"/>
-      <layer-subscription-data-table v-if='selectedTab === "layerSubscriptions"' :rows="layerSubscriptions"/>
+      <catalogue-entry-data-table v-if='selectedTab === "catalogueEntries"'/>
+      <layer-subscription-data-table v-if='selectedTab === "layerSubscriptions"'/>
     </div>
   </div>
 </template>

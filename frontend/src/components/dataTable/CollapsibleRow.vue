@@ -3,6 +3,7 @@
 
   defineProps<{ id: number }>()
 </script>
+
 <template>
   <tr data-bs-toggle="collapse" :data-bs-target="`#row-${id}`">
     <th scope="row"><PlusCircleFill colour="#4284BC" class="me-2"/></th>

@@ -1,3 +1,6 @@
+export type CatalogueStatus = 'locked'|'draft'|'cancelled';
+export type LayerSubscriptionStatus = 'active'|'disabled';
+
 // Raw records, currently placeholders and subject to change
 export interface LayerSubscription {
   number: string
@@ -6,7 +9,7 @@ export interface LayerSubscription {
   subscribedDate: string
   subscribedTime: number
   webserviceUrl: string
-  status: 'active'|'disabled',
+  status: LayerSubscriptionStatus,
   refreshFrequencyMinutes: number
 }
 
@@ -14,9 +17,33 @@ export interface CatalogueEntry {
   number: string
   name: string
   custodian: string
-  status: 'locked'|'draft'|'cancelled'
+  status: CatalogueStatus
   lastUpdated: string
   time: string
   assignedTo: string
   description: string
+}
+
+export interface PaginationFilter extends Map<string, any> {
+  offset?: number
+  limit?: number
+}
+
+export interface LayerSubscriptionFilter extends PaginationFilter {
+  status: LayerSubscriptionStatus
+  subscribedFrom?: string
+  subscribedTo?: string
+}
+
+export interface CatalogueEntryFilter extends PaginationFilter {
+  status?: CatalogueStatus
+  subscribedFrom?: string
+  subscribedTo?: string
+}
+
+export interface PaginationState {
+  currentPage: number
+  numPages: number
+  pageLength: number
+  total: number
 }

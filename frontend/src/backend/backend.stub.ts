@@ -1,5 +1,5 @@
 import { BackendService } from "./backend.service";
-import { CatalogueEntry, LayerSubscription } from './backend.api';
+import { CatalogueEntry, LayerSubscription, PaginationFilter } from './backend.api';
 
 const DUMMY_CATALOGUE_ENTRIES: Array<CatalogueEntry> = [
   {
@@ -33,11 +33,13 @@ const DUMMY_LAYER_SUBSCRIPTIONS: Array<LayerSubscription> = [
 ];
 
 export class BackendServiceStub implements BackendService {
-  public getLayerSubscriptions (): Array<LayerSubscription> {
-    return DUMMY_LAYER_SUBSCRIPTIONS;
+  public getLayerSubscriptions (tableFilter: PaginationFilter): Promise<Array<LayerSubscription>> {
+    console.debug('getLayerSubscriptions', tableFilter);
+    return Promise.resolve(DUMMY_LAYER_SUBSCRIPTIONS);
   }
 
-  public getCatalogueEntries (): Array<CatalogueEntry> {
-    return DUMMY_CATALOGUE_ENTRIES;
+  public getCatalogueEntries (tableFilter: PaginationFilter): Promise<Array<CatalogueEntry>> {
+    console.debug('getCatalogueEntries', tableFilter);
+    return Promise.resolve(DUMMY_CATALOGUE_ENTRIES);
   }
 }

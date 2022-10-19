@@ -1,13 +1,26 @@
 <script lang="ts" setup>
   import DataTable from './DataTable.vue';
   import PlusCircleFill from '../icons/plusCircleFill.vue';
-  import { LayerSubscription } from '../../backend/backend.api';
   import CollapsibleRow from './CollapsibleRow.vue';
+  import DataTablePagination from './DataTablePagination.vue';
+  import { onMounted } from 'vue';
+  import { useLayerSubscriptionStore } from '../../stores/LayerSubscriptionStore';
+  import { storeToRefs } from 'pinia';
 
-  const { rows } = defineProps<{
-    rows: Array<LayerSubscription>
-  }>();
+  // get Stores and fetch with `storeToRef` to
+  const layerSubscriptionStore = useLayerSubscriptionStore();
+  const { layerSubscriptions, numPages, currentPage, filter, pageSize } = storeToRefs(layerSubscriptionStore);
+  const { getLayerSubscriptions } = layerSubscriptionStore;
+
+  function setPage (pageNumber: number) {
+    filter.value.set('pageNumber', pageNumber);
+  }
+
+  onMounted(() => {
+    getLayerSubscriptions();
+  });
 </script>
+
 <template>
   <data-table>
     <template #headers>
@@ -23,7 +36,7 @@
       </tr>
     </template>
     <template #data>
-      <CollapsibleRow v-for="(row, index) in rows" :id="index">
+      <CollapsibleRow v-for="(row, index) in layerSubscriptions" :id="index">
         <template #cells>
           <td>
             {{ row.number }}
@@ -48,6 +61,10 @@
       <tr>
         <td colspan="8"><PlusCircleFill colour="#4284BC"></PlusCircleFill></td>
       </tr>
+    </template>
+    <template #pagination>
+      <DataTablePagination :currentPage="currentPage" :numPages="numPages" :pageSize="pageSize"
+                           :total="layerSubscriptions.length" @setPage="setPage"/>
     </template>
   </data-table>
 </template>

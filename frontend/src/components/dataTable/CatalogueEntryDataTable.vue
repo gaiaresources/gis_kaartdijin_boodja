@@ -2,12 +2,25 @@
   import DataTable from './DataTable.vue';
   import PlusCircleFill from '../icons/plusCircleFill.vue';
   import CollapsibleRow from './CollapsibleRow.vue';
-  import { CatalogueEntry } from '../../backend/backend.api';
+  import { useCatalogueEntryStore } from '../../stores/CatalogueEntryStore';
+  import { storeToRefs } from 'pinia';
+  import DataTablePagination from './DataTablePagination.vue';
+  import {onMounted} from "vue";
 
-  const { rows } = defineProps<{
-    rows: Array<CatalogueEntry>
-  }>();
+  // get Stores and fetch with `storeToRef` to
+  const catalogueEntryStore = useCatalogueEntryStore();
+  const { catalogueEntries, numPages, pageSize, currentPage, filter } = storeToRefs(catalogueEntryStore);
+  const { getCatalogueEntries } = catalogueEntryStore;
+
+  function setPage (pageNumber: number) {
+    filter.value.set('pageNumber', pageNumber);
+  }
+
+  onMounted(() => {
+    getCatalogueEntries();
+  });
 </script>
+
 <template>
   <data-table>
     <template #headers>
@@ -24,7 +37,7 @@
       </tr>
     </template>
     <template #data>
-      <CollapsibleRow v-for="(row, index) in rows" :id="index">
+      <CollapsibleRow v-for="(row, index) in catalogueEntries" :id="index">
         <template #cells>
           <td>{{ row.number }}</td>
           <td>{{ row.name }}</td>
@@ -44,6 +57,10 @@
       <tr>
         <td colspan="9"><PlusCircleFill colour="#4284BC"></PlusCircleFill></td>
       </tr>
+    </template>
+    <template #pagination>
+      <DataTablePagination :currentPage="currentPage" :numPages="numPages" :pageSize="pageSize"
+                           :total="catalogueEntries.length" @setPage="setPage"/>
     </template>
   </data-table>
 </template>
