@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "django_filters",
+    "kaartdijin_boodja",
     "kaartdijin_boodja.apps.accounts",
     "kaartdijin_boodja.apps.catalogue",
     "kaartdijin_boodja.apps.publisher",
