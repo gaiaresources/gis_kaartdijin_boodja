@@ -19,14 +19,14 @@
 </script>
 
 <template>
-  <Select name="Custodian" :values="['All']"
+  <Select name="Custodian" :values="['All']" :value="tableFilters.custodian"
           @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Select name="Status" :values="['Draft', 'Locked', 'Cancelled']"
+  <Select name="Status" :values="['Draft', 'Locked', 'Cancelled']" :value="tableFilters.status"
           @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Input name="Last Updated From" type="date" placeholder="DD/MM/YYYY"
+  <Input name="Last Updated From" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.lastUpdatedFrom"
          @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Input name="Last Updated To" type="date" placeholder="DD/MM/YYYY"
+  <Input name="Last Updated To" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.lastUpdatedTo"
          @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Select name="Assigned to" :values="['Rodney Sales']"
+  <Select name="Assigned to" :values="['Rodney Sales']" :value="tableFilters.assignedTo"
           @value-updated="(name, value) => setFilter({ name, value })"/>
 </template>
