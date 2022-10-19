@@ -43,7 +43,7 @@ class LayerSubmissionFilter(filters.FilterSet):
     class Meta:
         """Layer Submission Filter Metadata."""
         model = models.layer_submissions.LayerSubmission
-        fields = ["status", "submitted"]
+        fields = ("status", "submitted")
 
 
 class LayerSubscriptionFilter(filters.FilterSet):
@@ -54,7 +54,7 @@ class LayerSubscriptionFilter(filters.FilterSet):
     class Meta:
         """Layer Subscription Filter Metadata."""
         model = models.layer_subscriptions.LayerSubscription
-        fields = ["status", "subscribed"]
+        fields = ("status", "subscribed")
 
 
 class LayerSymbologyFilter(filters.FilterSet):
