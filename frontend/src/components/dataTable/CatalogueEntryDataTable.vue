@@ -39,12 +39,12 @@
     <template #data>
       <CollapsibleRow v-for="(row, index) in catalogueEntries" :id="index">
         <template #cells>
-          <td>{{ row.number }}</td>
+          <td>{{ row.id }}</td>
           <td>{{ row.name }}</td>
           <td>{{ row.custodian }}</td>
           <td>{{ row.status }}</td>
-          <td>{{ row.lastUpdated }}</td>
-          <td>{{ row.time }}</td>
+          <td>{{ row.updatedAt }}</td>
+          <td>{{ row.updatedAt }}</td>
           <td>{{ row.assignedTo }}</td>
           <td><a href="#">View</a><a href="#">History</a></td>
         </template>

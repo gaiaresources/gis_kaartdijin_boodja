@@ -1,24 +1,26 @@
 import { defineStore } from "pinia";
-import {Ref, ref, computed, ComputedRef, watch} from 'vue';
-import { BackendService } from "../backend/backend.service";
-import { BackendServiceStub } from "../backend/backend.stub";
-import { CatalogueEntry, CatalogueEntryFilter } from '../backend/backend.api';
+import { Ref, ref, computed, ComputedRef, watch } from 'vue';
+import { CatalogueEntry, CatalogueEntryFilter } from '../providers/catalogueEntryProvider.api';
+import { CatalogueEntryProvider } from "../providers/catalogueEntryProvider";
+import { PaginatedRecord } from "../backend/backend.api";
 
 // Get the backend stub if the test flag is used.
-const backend: BackendService = import.meta.env.MODE === 'mock' ? new BackendServiceStub : new BackendService();
+const catalogueEntryProvider: CatalogueEntryProvider = new CatalogueEntryProvider();
 
 export const useCatalogueEntryStore = defineStore('catalogueEntries', () => {
   const catalogueEntries: Ref<Array<CatalogueEntry>> = ref([]);
   const currentPage: Ref<number> = ref(1);
   const pageSize: Ref<number> = ref(10);
   const numPages: ComputedRef<number> = computed(() => Math.ceil(catalogueEntries.value.length / pageSize.value));
+  const total: Ref<number> = ref(0);
   const filter: Ref<CatalogueEntryFilter> = ref(new Map() as CatalogueEntryFilter);
 
   watch(filter, () => getCatalogueEntries());
 
-  async function getCatalogueEntries (): Promise<Array<CatalogueEntry>> {
-    const entries = await backend.getCatalogueEntries(filter.value);
-    catalogueEntries.value = entries;
+  async function getCatalogueEntries (): Promise<PaginatedRecord<CatalogueEntry>> {
+    const entries = await catalogueEntryProvider.fetchCatalogueEntries(filter.value);
+    catalogueEntries.value = entries.results
+    total.value = entries.count;
 
     return entries;
   }

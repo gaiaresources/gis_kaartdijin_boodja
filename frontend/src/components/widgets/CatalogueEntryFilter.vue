@@ -2,7 +2,7 @@
   import { watch } from 'vue';
   import { useTableFilterComposable } from '../../tools/filterComposable';
   import { useCatalogueEntryStore } from '../../stores/CatalogueEntryStore';
-  import { CatalogueEntryFilter } from '../../backend/backend.api';
+  import { CatalogueEntryFilter } from '../../providers/catalogueEntryProvider.api';
   import Select from './Select.vue';
   import Input from './Input.vue';
 
@@ -23,9 +23,9 @@
           @value-updated="(name, value) => setFilter({ name, value })"/>
   <Select name="Status" :values="['Draft', 'Locked', 'Cancelled']" :value="tableFilters.status"
           @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Input name="Last Updated From" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.lastUpdatedFrom"
+  <Input name="Last Updated From" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.updateFrom"
          @value-updated="(name, value) => setFilter({ name, value })"/>
-  <Input name="Last Updated To" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.lastUpdatedTo"
+  <Input name="Last Updated To" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.updateTo"
          @value-updated="(name, value) => setFilter({ name, value })"/>
   <Select name="Assigned to" :values="['Rodney Sales']" :value="tableFilters.assignedTo"
           @value-updated="(name, value) => setFilter({ name, value })"/>

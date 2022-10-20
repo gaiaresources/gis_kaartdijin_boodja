@@ -2,7 +2,7 @@
   import { watch } from 'vue';
   import { useTableFilterComposable } from '../../tools/filterComposable';
   import { useLayerSubscriptionStore } from '../../stores/LayerSubscriptionStore';
-  import { LayerSubscriptionFilter } from '../../backend/backend.api';
+  import { LayerSubscriptionFilter } from '../../providers/layerSubscriptionProvider.api';
   import Select from './Select.vue';
   import Input from './Input.vue';
 
@@ -19,7 +19,7 @@
 </script>
 
 <template>
-  <Select name="Status" :values="['Draft', 'Locked', 'Cancelled']" :value="tableFilters.status"
+  <Select name="Status" :values="['Draft', 'Locked', 'Cancelled']" :value="tableFilters.status?.toString() || ''"
           @value-updated="(name, value) => setFilter({ name, value })"/>
   <Input name="Subscribed from" type="date" placeholder="DD/MM/YYYY" :value="tableFilters.subscribedFrom"
          @value-updated="(name, value) => setFilter({ name, value })"/>

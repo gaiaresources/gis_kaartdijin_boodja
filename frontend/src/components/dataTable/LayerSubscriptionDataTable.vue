@@ -39,12 +39,12 @@
       <CollapsibleRow v-for="(row, index) in layerSubscriptions" :id="index">
         <template #cells>
           <td>
-            {{ row.number }}
+            {{ row.id }}
           </td>
           <td>{{ row.name }}</td>
           <td>{{ row.subscribedDate }}</td>
           <td>{{ row.subscribedTime }}</td>
-          <td>{{ row.webserviceUrl }}</td>
+          <td>{{ row.url }}</td>
           <td>{{ row.status }}</td>
           <td>
             <a href="#">View</a>
@@ -54,7 +54,7 @@
         <template #content>
           <td colspan="8">
             <span class="fw-bold small">Catalogue layer description: </span>
-            {{ row.description }}
+
           </td>
         </template>
       </CollapsibleRow>

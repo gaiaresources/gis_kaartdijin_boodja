@@ -1,27 +1,36 @@
-export type CatalogueStatus = 'locked'|'draft'|'cancelled';
-export type LayerSubscriptionStatus = 'active'|'disabled';
-
-// Raw records, currently placeholders and subject to change
-export interface LayerSubscription {
-  number: string
-  name: string
-  description: string
-  subscribedDate: string
-  subscribedTime: number
-  webserviceUrl: string
-  status: LayerSubscriptionStatus,
-  refreshFrequencyMinutes: number
+export interface PaginatedRecord<T> {
+  count: number
+  next: string | null
+  previous: string | null
+  results: Array<T>
 }
 
-export interface CatalogueEntry {
-  number: string
+export type Params = Record<string, string>
+
+// Raw records, currently placeholders and subject to change
+export interface RawLayerSubscription {
+  id: number
   name: string
-  custodian: string
-  status: CatalogueStatus
-  lastUpdated: string
-  time: string
-  assignedTo: string
+  url: string
+  frequency: string
+  status: number
+  subscribed_at: string
+  catalogue_entry: number
+}
+
+export interface RawCatalogueEntry {
+  id: number
+  name: string
   description: string
+  status: number
+  updated_at: string
+  custodian: number | null
+  assigned_to: number | null
+  subscription: number
+  active_layer: number
+  layers: Array<number>
+  email_notifications: Array<number>
+  webhook_notifications: Array<number>
 }
 
 export interface PaginationFilter extends Map<string, any> {
@@ -29,18 +38,18 @@ export interface PaginationFilter extends Map<string, any> {
   limit?: number
 }
 
-export interface LayerSubscriptionFilter extends PaginationFilter {
-  status: LayerSubscriptionStatus
-  subscribedFrom?: string
-  subscribedTo?: string
+export interface RawLayerSubscriptionFilter extends PaginationFilter {
+  status?: string
+  subscribed_before?: string
+  subscribed_after?: string
 }
 
-export interface CatalogueEntryFilter extends PaginationFilter {
+export interface RawCatalogueEntryFilter extends PaginationFilter {
+  status?: string
   custodian?: string
-  status?: CatalogueStatus
-  lastUpdatedFrom?: string
-  lastUpdatedTo?: string
-  assignedTo?: string
+  assigned_to?: string
+  updated_before?: string
+  updated_after?: string
 }
 
 export interface PaginationState {
@@ -48,4 +57,9 @@ export interface PaginationState {
   numPages: number
   pageLength: number
   total: number
+}
+
+export interface RecordStatus {
+  id: number
+  label: 'Draft'|'Locked'|'Cancelled'
 }
