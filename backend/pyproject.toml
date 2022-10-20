@@ -70,7 +70,7 @@ addopts = "--verbose --cov=kaartdijin_boodja"
 log_cli_level = "DEBUG"
 log_cli_format = "%(asctime)s.%(msecs)03d [%(levelname)-8s] (%(name)-11s): %(message)s"
 log_cli_date_format = "%Y%m%dT%H%M%S"
-DJANGO_SETTINGS_MODULE = "kaartdijin_boodja.settings"
+DJANGO_SETTINGS_MODULE = "tests.settings"
 
 [tool.coverage.run]
 branch = true
