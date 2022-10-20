@@ -6,7 +6,7 @@ import {CatalogueEntryFilter, LayerSubscription } from '../backend/backend.api';
 
 
 // Get the backend stub if the test flag is used.
-const backend: BackendService = import.meta.env.DEV ? new BackendServiceStub() : new BackendService();
+const backend: BackendService = import.meta.env.MODE === 'mock' ? new BackendServiceStub() : new BackendService();
 
 export const useLayerSubscriptionStore = defineStore('layerSubscription', () => {
   const layerSubscriptions: Ref<Array<LayerSubscription>> = ref([]);

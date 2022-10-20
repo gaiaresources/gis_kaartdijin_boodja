@@ -8,4 +8,14 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom'
   },
+  server: {
+    host: true,
+    strictPort: true,
+    proxy: {
+      '/api': {
+        target: `http://localhost:8000`,
+        changeOrigin: true,
+      },
+    }
+  }
 })

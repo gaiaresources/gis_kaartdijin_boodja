@@ -5,7 +5,7 @@ import { BackendServiceStub } from "../backend/backend.stub";
 import { CatalogueEntry, CatalogueEntryFilter } from '../backend/backend.api';
 
 // Get the backend stub if the test flag is used.
-const backend: BackendService = import.meta.env.DEV ? new BackendServiceStub : new BackendService();
+const backend: BackendService = import.meta.env.MODE === 'mock' ? new BackendServiceStub : new BackendService();
 
 export const useCatalogueEntryStore = defineStore('catalogueEntries', () => {
   const catalogueEntries: Ref<Array<CatalogueEntry>> = ref([]);

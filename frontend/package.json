@@ -4,9 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "TEST_DATA=true vite",
+    "dev": "vite",
+    "dev-mock": "vite --mode mock",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
+    "preview": "npm build && vite preview",
     "test": "vitest",
     "lint": "eslint --ext .ts,.vue --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
