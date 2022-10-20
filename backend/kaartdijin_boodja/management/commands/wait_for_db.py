@@ -1,4 +1,4 @@
-"""Kaartdijin Boodja Django Project Wait-For-Database Management Command."""
+"""Kaartdijin Boodja Django Project Wait-for-Database Management Command."""
 
 
 # Standard
@@ -14,8 +14,13 @@ from django.core.management import base
 from typing import Any
 
 
+# Constants
+DEFAULT_INTERVAL_S = 3.0
+DEFAULT_ATTEMPTS = 60
+
+
 class Command(base.BaseCommand):
-    """Wait for DB Management Command."""
+    """Wait-for-Database Management Command."""
     # Help string
     help = "Blocks until the database is available"  # noqa: A003
 
@@ -26,8 +31,8 @@ class Command(base.BaseCommand):
             parser (argparse.ArgumentParser): Argument parser to add to.
         """
         # Add arguments
-        parser.add_argument("--interval", type=float, default=3)
-        parser.add_argument("--attempts", type=int, default=60)
+        parser.add_argument("--interval", type=float, default=DEFAULT_INTERVAL_S)
+        parser.add_argument("--attempts", type=int, default=DEFAULT_ATTEMPTS)
 
     def handle(self, *args: Any, **kwargs: Any) -> None:
         """Handles the management command functionality."""
