@@ -8,7 +8,7 @@ WORKDIR /app
 RUN pip install --upgrade pip
 
 # Install Postgres Dependencies
-RUN apk add --no-cache postgresql-libs postgresql-dev gcc musl-dev
+RUN apk add --no-cache postgresql-libs postgresql-dev gcc musl-dev libffi-dev
 
 # Install Poetry
 RUN pip install poetry
