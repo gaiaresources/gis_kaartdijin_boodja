@@ -23,18 +23,18 @@ services:
       - DEBUG=${DEBUG:-true}
       - SECRET_KEY=${SECRET_KEY:-django-insecure}
       - DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@db:5432/kaartdijin_boodja}
+    # volumes:
+    #   - ./backend:/app
     ports:
       - 8000:8000
-    depends_on:
-      - db
 
   frontend:
     build: frontend
     command: npm run dev -- --host 0.0.0.0 --port 5173
+    # volumes:
+    #   - ./frontend:/app
     ports:
       - 80:5173
-    depends_on:
-      - backend
 
 volumes:
   db:
