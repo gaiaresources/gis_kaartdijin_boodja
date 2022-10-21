@@ -19,6 +19,7 @@ Examples:
 
 # Third-Party
 from django import conf
+from django import shortcuts
 from django import urls
 from django.contrib import admin
 
@@ -31,6 +32,9 @@ admin.site.site_title = conf.settings.PROJECT_TITLE
 
 # Django URL Patterns
 urlpatterns = [
+    # Vue SPA
+    urls.path("", lambda r: shortcuts.render(r, "index.html")),
+
     # Django Administration
     urls.path("admin/", admin.site.urls),
 

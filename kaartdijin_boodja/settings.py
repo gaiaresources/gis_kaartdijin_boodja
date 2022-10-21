@@ -20,7 +20,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
-
+FRONTEND_DIR = BASE_DIR / "kaartdijin_boodja/frontend/kaartdijin_boodja"
 
 # Project specific settings
 PROJECT_TITLE = "Kaartdijin Boodja"
@@ -67,7 +67,9 @@ ROOT_URLCONF = "kaartdijin_boodja.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            FRONTEND_DIR / "dist"
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -106,7 +108,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_URL = "/static/"
+STATIC_URL = "/assets/"
+STATIC_ROOT = BASE_DIR / "kaartdijin_boodja/assets"
+STATICFILES_DIRS = [
+    FRONTEND_DIR / "dist/assets"
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
