@@ -15,6 +15,9 @@ from . import models
 from . import readers
 from . import storage
 
+# Typing
+from typing import Optional, cast
+
 
 # Logging
 log = logging.getLogger(__name__)
@@ -108,6 +111,36 @@ class Absorber:
             # Could not extract symbology
             symbology = None
 
+        # Retrieve existing catalogue entry from the database
+        catalogue_entry = models.catalogue_entries.CatalogueEntry.objects.filter(name=metadata.name).first()
+
+        # Check existing catalogue entry
+        if not catalogue_entry:
+            # Create
+            self.create_catalogue_entry(metadata, attributes, symbology, archive)
+
+        else:
+            # Update
+            self.update_catalogue_entry(catalogue_entry, metadata, attributes, symbology, archive)
+
+    def create_catalogue_entry(
+        self,
+        metadata: readers.types.metadata.Metadata,
+        attributes: Optional[list[readers.types.attributes.Attribute]],
+        symbology: Optional[readers.types.symbology.Symbology],
+        archive: str,
+    ) -> None:
+        """Creates a new catalogue entry with the supplied values.
+
+        Args:
+            metadata (Metadata): Metadata for the entry.
+            attributes (Optional[list[Attribute]]): Attributes for the entry.
+            symbology (Optional[Symbology]): Symbology for the entry.
+            archive (str): Archive URL for the entry
+        """
+        # Log
+        log.info("Creating new catalogue entry")
+
         # Enter Atomic Database Transaction
         with transaction.atomic():
             # Create Catalogue Entry
@@ -155,3 +188,34 @@ class Absorber:
                         order=attribute.order,
                         layer=layer_submission,
                     )
+
+    def update_catalogue_entry(
+        self,
+        catalogue_entry: models.catalogue_entries.CatalogueEntry,
+        metadata: readers.types.metadata.Metadata,
+        attributes: Optional[list[readers.types.attributes.Attribute]],
+        symbology: Optional[readers.types.symbology.Symbology],
+        archive: str,
+    ) -> None:
+        """Creates a new catalogue entry with the supplied values.
+
+        Args:
+            catalogue_entry (CatalogueEntry): Catalogue entry to update.
+            metadata (Metadata): Metadata for the entry.
+            attributes (Optional[list[Attribute]]): Attributes for the entry.
+            symbology (Optional[Symbology]): Symbology for the entry.
+            archive (str): Archive URL for the entry
+        """
+        # Log
+        log.info("Updating existing catalogue entry")
+
+        # First, let's check if the catalogue entry currently has an active
+        # layer - we need that to perform our comparison. If it doesn't then
+        # raise an error
+        assert catalogue_entry.active_layer is not None  # noqa: S101
+
+        # Next, let's retrieve the attributes from the existing active layer
+        existing_attributes = list(catalogue_entry.active_layer.attributes.all())
+
+        # TODO
+        ...
