@@ -5,6 +5,12 @@
 from django.contrib import auth
 from django.db import models
 
+# Local
+from .. import emails
+
+# Typing
+from typing import Optional, Iterable
+
 
 # Shortcuts
 UserModel = auth.get_user_model()  # TODO -> Does this work with SSO?
@@ -61,3 +67,42 @@ class CatalogueEntry(models.Model):
         """
         # Generate String and Return
         return f"{self.name}"
+
+    def save(
+        self,
+        force_insert: bool = False,
+        force_update: bool = False,
+        using: Optional[str] = None,
+        update_fields: Optional[Iterable[str]] = None,
+    ) -> None:
+        """Overrides the model save function to provide on-save hooks.
+
+        Args:
+            force_insert (bool): Whether to force insert.
+            force_update (bool): Whether to force update.
+            using (Optional[str]): Database to use.
+            update_fields (Optional[Iterable[str]]): Fields to be updated.
+        """
+        # Get current status from database
+        # If this is the first time the model is being created, then this will
+        # not exist in the database yet and `None` will be returned
+        current = CatalogueEntry.objects.filter(id=self.id).first()
+
+        # Save
+        super().save(force_insert, force_update, using, update_fields)
+
+        # Check for Status Change to Locked
+        if (
+            current  # The catalogue entry already existed in the database
+            and current.status != self.status  # The status changed
+            and self.status == CatalogueEntryStatus.LOCKED  # The new status is LOCKED
+        ):
+            # Email Notifications!
+            for en in self.email_notifications.all():
+                # Send Email Notification
+                emails.CatalogueEntryLockedEmail().send(en.email)
+
+            # Webhook Notifications!
+            for wn in self.webhook_notifications.all():
+                # Send Webhook Notification
+                wn  # TODO -> Send webhook notifications

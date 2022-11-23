@@ -8,14 +8,16 @@ from rest_framework import viewsets
 from . import filters
 from . import mixins
 from . import models
+from . import permissions
 from . import serializers
 
 
-class CatalogueEntryViewSet(mixins.ChoicesMixin, viewsets.ReadOnlyModelViewSet):
+class CatalogueEntryViewSet(mixins.ChoicesMixin, viewsets.ModelViewSet):
     """Catalogue Entry View Set."""
     queryset = models.catalogue_entries.CatalogueEntry.objects.all()
     serializer_class = serializers.catalogue_entries.CatalogueEntrySerializer
     filterset_class = filters.CatalogueEntryFilter
+    permission_classes = [permissions.CatalogueEditorAndAssignedPermission]
 
 
 class LayerAttributeViewSet(mixins.ChoicesMixin, viewsets.ReadOnlyModelViewSet):
