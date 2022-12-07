@@ -2,6 +2,8 @@
 
 
 # Third-Party
+from django import shortcuts
+from django.contrib import auth
 from drf_spectacular import utils as drf_utils
 from rest_framework import decorators
 from rest_framework import request
@@ -20,6 +22,10 @@ from . import serializers
 
 # Typing
 from typing import cast
+
+
+# Shortcuts
+UserModel = auth.get_user_model()
 
 
 @drf_utils.extend_schema(tags=["Catalogue - Catalogue Entries"])
@@ -102,6 +108,34 @@ class CatalogueEntryViewSet(
 
         # Decline
         catalogue_entry.decline()
+
+        # Return Response
+        return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+    @drf_utils.extend_schema(request=None, responses={status.HTTP_204_NO_CONTENT: None})
+    @decorators.action(detail=True, methods=["POST"], url_path=r"assign/(?P<user_pk>\d+)")
+    def assign(self, request: request.Request, pk: str, user_pk: str) -> response.Response:
+        """Declines the Catalogue Entry.
+
+        Args:
+            request (request.Request): API request.
+            pk (str): Primary key of the Catalogue Entry.
+            user_pk (str): Primary key of the User to assign to.
+
+        Returns:
+            response.Response: Empty response confirming success.
+        """
+        # Retrieve Catalogue Entry
+        # Help `mypy` by casting the resulting object to a Catalogue Entry
+        catalogue_entry = self.get_object()
+        catalogue_entry = cast(models.catalogue_entries.CatalogueEntry, catalogue_entry)
+
+        # Retrieve User
+        user = shortcuts.get_object_or_404(UserModel, id=user_pk)
+
+        # Assign!
+        catalogue_entry.assigned_to = user
+        catalogue_entry.save()
 
         # Return Response
         return response.Response(status=status.HTTP_204_NO_CONTENT)
